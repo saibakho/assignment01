@@ -56,10 +56,10 @@ public class Main
 		//ArrayList<PokemonData> pokeCatched = new ArrayList();
 		HashMap<String, ArrayList<String>> catchedMap = new HashMap();
 		ArrayList<String> grassInitialList = new ArrayList();
-		catchedMap.put("Grass", grassInitialList);
+		catchedMap.put("grass", grassInitialList);
 		// dummy stuff : hashmap is one-to-one ...
 
-		while (!op.equals("quit"))
+		while (!op.toLowerCase().equals("quit"))
 		{
 			PokemonData curPokemon = pokeList.get(random.nextInt(pokeList.size()));
 			System.out.println("Pokemon encountered!!");
@@ -70,37 +70,37 @@ public class Main
 			System.out.print("\nEnter your reaction :\n==> ");
 			op = input.next();
 		//======================================================
-			if (op.equals("catch"))
+			if (op.toLowerCase().equals("catch"))
 			{
 				// add to list
 				//pokeCatched.add(curPokemon);
 				// add to hashmap
-				if ( !catchedMap.containsKey(curPokemon.type) ) {	// if typeList not exists
+				if ( !catchedMap.containsKey(curPokemon.type.toLowerCase()) ) {	// if typeList not exists
 					ArrayList<String> tempList = new ArrayList();
-					catchedMap.put(curPokemon.type, tempList);
+					catchedMap.put(curPokemon.type.toLowerCase(), tempList);
 				}
-				catchedMap.get(curPokemon.type).add(curPokemon.name);
+				catchedMap.get(curPokemon.type.toLowerCase()).add(curPokemon.name);
 				// score stuff
-				score += curPokemon.type.equals("Grass") ? 1 : -1 ;
+				score += curPokemon.type.equals("grass") ? 1 : -1 ;
 				// print
 				System.out.println("You've caught a " + curPokemon.name + " !!\n");
 			}
-			else if (op.equals("run"))
+			else if (op.toLowerCase().equals("run"))
 			{
 				// score stuff
-				score += curPokemon.type.equals("Grass") ? -1 : 1 ;
+				score += curPokemon.type.equals("grass") ? -1 : 1 ;
 				// print
 				System.out.println("Run away successfully!!\n");
 			}
-			else if (op.equals("quit"))
+			else if (op.toLowerCase().equals("quit"))
 			{
 				System.out.println("\n====================");
 				System.out.println("    GAME OVER\n");
 				System.out.println("score : " + score);
-				System.out.println("grass : " + catchedMap.get("Grass").size());
+				System.out.println("grass : " + catchedMap.get("grass").size());
 				System.out.println("====================\n");
 			}
-			else if (op.equals("printMap"))
+			else if (op.toLowerCase().equals("map"))
 			{
 				System.out.println("\n================");
 				for ( String key : catchedMap.keySet() ) {
